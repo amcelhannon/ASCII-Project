@@ -22,10 +22,10 @@ void main() {
   }
 
   System.out.println("\nChoose from the following brightness calculators:");
-  System.out.println(AsciiConverter.listBrightnessOptions());
+  System.out.println(BrightnessCalculator.listBrightnessOptions());
   System.out.print("Brightness choice: ");
   int brightness = scan.nextInt();
-  if (brightness < 1 || brightness > AsciiConverter.listBrightnessOptions().length()) {
+  if (brightness < 1 || brightness > BrightnessCalculator.brightnessOptionsSize()) {
     System.out.println("Invalid option.");
     return;
   }
