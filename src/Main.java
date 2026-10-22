@@ -1,48 +1,39 @@
 import java.util.Scanner;
 
 void main() {
-  AsciiConverter.convert("src/" + "subject.jpg", 1,50);
-
   Scanner scan = new Scanner(System.in);
 
-  System.out.println("Choose from the following options:");
-  System.out.println(AsciiConverter.listOptions());
+//  System.out.println("Choose from the following options:");
+//  System.out.println(AsciiConverter.listOptions());
+//  System.out.print("Option Choice: ");
+//  int choice = scan.nextInt();
+//  if (choice < 1 || choice > AsciiConverter.getConverterOptions().size()) {
+//    System.out.println("Invalid option.");
+//    return;
+//  }
 
-  int choice = scan.nextInt();
-
-  if (choice < 1 || choice > AsciiConverter.getOptions().size()) {
+  System.out.println("\nChoose from the following gradients:");
+  System.out.println(AsciiConverter.listGradients());
+  System.out.print("Gradient choice: ");
+  int grade = scan.nextInt();
+  if (grade < 1 || grade > AsciiConverter.getGradients().size()) {
     System.out.println("Invalid option.");
     return;
   }
 
-  System.out.print("Scale factor: ");
+  System.out.println("\nChoose from the following brightness calculators:");
+  System.out.println(AsciiConverter.listBrightnessOptions());
+  System.out.print("Brightness choice: ");
+  int brightness = scan.nextInt();
+  if (brightness < 1 || brightness > AsciiConverter.listBrightnessOptions().length()) {
+    System.out.println("Invalid option.");
+    return;
+  }
+
+  System.out.print("\nScale factor (Original to New): ");
   int scaleFactor = scan.nextInt();
 
-  AsciiConverter.convert(
-          "src/subject.jpg",
-          choice - 1,
-          scaleFactor
-  );
-//
-//  Scanner scan = new Scanner(System.in);
-//  System.out.println("Choose from the following options: ");
-//  System.out.println(AsciiConverter.listOptions());
-//  int choice = scan.nextInt();
-//  String selection;
-//  switch (choice) {
-//    case 1:
-//      selection = "grayscale1_1";
-//      break;
-//
-//    case 2:
-//      selection = "grayscaled";
-//      break;
-//
-//    default:
-//      System.out.println("Invalid option. Using grayscaled.");
-//      selection = "grayscaled";
-//  }
-//
-//
-//  AsciiConverter.convert("src/" + "subject.jpg", selection, 1);
+  //AsciiConverter.convert("src/subject.jpg", choice-1 , grade-1, brightness, scaleFactor);
+  AsciiConverter.convert("src/subject.jpg", 0 , grade-1, brightness-1, scaleFactor);
+
 }

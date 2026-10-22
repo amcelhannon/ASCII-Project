@@ -1,0 +1,27 @@
+1. Gradient sets.
+    a. Different gradients
+    b. A way to dynamically change the gradient sampling size
+
+2-3- Preprocessing adjustments - overwrite original file?
+
+2. Inversion
+    a. Be able to plug into other converters- inversion, then using another post-processing
+
+3. Contrast Adjustment
+
+4. Unicode Block conversions
+
+5. Sobel Edge Detection
+
+6. Edge and Grayscale Hybrid- Brightness controls Density, Edges control character type
+
+
+Higher tier levels
+
+7. Use different fonts to make different gradients
+
+8. ASCII using character density measurements- using fonts and sizes to achieve better resolution??
+
+9. Braille Mode to better cover large patches of images
+
+10. Use edge detection to see directional edge characters of roughly equal luminance
