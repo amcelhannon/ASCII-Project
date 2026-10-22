@@ -13,10 +13,10 @@ void main() {
 //  }
 
   System.out.println("\nChoose from the following gradients:");
-  System.out.println(AsciiConverter.listGradients());
+  System.out.println(Gradients.listGradients());
   System.out.print("Gradient choice: ");
   int grade = scan.nextInt();
-  if (grade < 1 || grade > AsciiConverter.getGradients().size()) {
+  if (grade < 1 || grade > Gradients.getGradients().size()) {
     System.out.println("Invalid option.");
     return;
   }
