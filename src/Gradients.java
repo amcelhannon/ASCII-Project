@@ -5,96 +5,62 @@ import java.util.Set;
 
 public final class Gradients
 {
-    private static final LinkedHashMap<String, String> gradients = new LinkedHashMap<>();
+    private static final ArrayList<Gradient> gradients = new ArrayList<>();
     static {
-        gradients.put(
+        gradients.add(new Gradient(
                 "Binary-2",
-                "# "
-        );
-
-        gradients.put(
+                "# "));
+        gradients.add(new Gradient(
                 "Binary Inverse-2",
-                " $ #"
-        );
-
-        gradients.put(
+                " $ #"  ));
+        gradients.add(new Gradient(
                 "Standard-3",
-                "@*. "
-        );
-
-        gradients.put(
+                "@*. "  ));
+        gradients.add(new Gradient(
                 "Standard-5",
-                "#*:. "
-        );
-
-        gradients.put(
+                "#*:. "  ));
+        gradients.add(new Gradient(
                 "Standard-7",
-                "@#*+=:. "
-        );
-
-        gradients.put(
+                "@#*+=:. "  ));
+        gradients.add(new Gradient(
                 "Standard-10",
-                "@%#*+=-:. "
-        );
-
-        gradients.put(
+                "@%#*+=-:. "  ));
+        gradients.add(new Gradient(
                 "Standard-15",
-                "@%#*+=-:.`' "
-        );
-
-        gradients.put(
+                "@%#*+=-:.`' "  ));
+        gradients.add(new Gradient(
                 "Block-5",
-                "█▓▒░ "
-        );
-
-        gradients.put(
+                "█▓▒░ " ));
+        gradients.add(new Gradient(
                 "Block-9",
-                "█▉▊▋▌▍▎▏░ "
-        );
-
-        gradients.put(
+                "█▉▊▋▌▍▎▏░ " ));
+        gradients.add(new Gradient(
                 "Block Dense",
-                "█▉▊▋▌▍▎▏ "
-        );
-
-        gradients.put(
+                "█▉▊▋▌▍▎▏ "   ));
+        gradients.add(new Gradient(
                 "Block-Mixed",
-                "█▓▊▒▌░▎ "
-        );
-
-        gradients.put(
+                "█▓▊▒▌░▎ "  ));
+        gradients.add(new Gradient(
                 "Geometric",
-                "■□▪▫· "
-        );
-
-        gradients.put(
+                "■□▪▫· "  ));
+        gradients.add(new Gradient(
                 "Rounded",
-                "@Oo:. "
-        );
-
-        gradients.put(
+                "@Oo:. "  ));
+        gradients.add(new Gradient(
                 "Sketch",
-                "#x+=-. "
-        );
-
-        gradients.put(
+                "#x+=-. "  ));
+        gradients.add(new Gradient(
                 "Numeric",
-                "9876543210 "
-        );
-
-        gradients.put(
+                "9876543210 "  ));
+        gradients.add(new Gradient(
                 "Dense",
-                "$@B%8&WM#*oahkbdpqwmZO0QLCJYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
-        );
-
-        gradients.put(
+                "$@B%8&WM#*oahkbdpqwmZO0QLCJYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "  ));
+        gradients.add(new Gradient(
                 "Dense Clean",
-                "@%#*+=-:. "
-        );
-
+                "@%#*+=-:. "  ));
     }
 
-    public static Set<Map.Entry<String, String>> getGradients() {return gradients.entrySet();}
+    public static ArrayList<Gradient> getGradients() {return gradients;}
 
     public static int getGradientCount() {
         return gradients.size();
@@ -103,18 +69,18 @@ public final class Gradients
     public static String listGradients (){
         StringBuilder result = new StringBuilder();
         int index = 1;
-        for (String name : gradients.keySet()) {
+        for (Gradient gradient : gradients) {
             result.append("(")
                     .append(index++)
                     .append(") ")
-                    .append(name)
+                    .append(gradient.getName())
                     .append("\n");
         }
         return result.toString();
     }
 
     public static String getGradient(int index) {
-        return new ArrayList<>(gradients.values()).get(index);
+        return gradients.get(index).getCharacterBase();
     }
 
 }
