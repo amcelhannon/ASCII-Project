@@ -33,8 +33,8 @@ public class Converters {
         return result.toString();
     }
 
-    public static Converter getConverter(int index) {
-        return new ArrayList<>(converterList.values()).get(index);
+    public static Converter getNthConverter(int index) {
+        return new ArrayList<>(converterList.values()).get(index-1);
     }
 
     public static Set<Map.Entry<String, Converter>> getConverterOptions() {

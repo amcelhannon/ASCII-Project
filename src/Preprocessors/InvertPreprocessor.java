@@ -1,6 +1,10 @@
+package Preprocessors;
+
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class InvertPreprocessor implements Preprocessor {
+    private final ArrayList<String> parameterNames = new ArrayList<>() ;
 
     @Override
     public String getName() {
@@ -8,6 +12,10 @@ public class InvertPreprocessor implements Preprocessor {
     }
 
     @Override
+    public BufferedImage process(BufferedImage image, Double parameter) {
+        return process(image) ;
+    }
+
     public BufferedImage process(BufferedImage image) {
 
         BufferedImage result = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
@@ -28,4 +36,15 @@ public class InvertPreprocessor implements Preprocessor {
 
         return result;
     }
+
+    @Override
+    public boolean requiresParameters(){
+        return false;
+    }
+
+    @Override
+    public ArrayList<String> getParameters(){
+        return parameterNames;
+    }
 }
+

@@ -1,7 +1,4 @@
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
 
 public final class Gradients
 {
@@ -79,8 +76,8 @@ public final class Gradients
         return result.toString();
     }
 
-    public static String getGradient(int index) {
-        return gradients.get(index).getCharacterBase();
+    public static String getNthGradient(int index) {
+        return gradients.get(index-1).getCharacterBase();
     }
 
 }

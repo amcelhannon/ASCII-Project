@@ -18,8 +18,7 @@ public final class BrightnessCalculator {
                             int red = (rgb >> 16) & 0xFF;
                             int green = (rgb >> 8) & 0xFF;
                             int blue = rgb & 0xFF;
-
-                            return (int) (0.299 * red + 0.587 * green + 0.114 * blue);
+                            return (int) (red * 0.2126 + green * 0.7152 + blue * 0.0722);
                         }
                 )
         );
