@@ -33,7 +33,7 @@ void main() {
   System.out.print("\nScale factor (Original to New): ");
   int scaleFactor = scan.nextInt();
 
-  //AsciiConverter.convert("src/subject.jpg", choice-1 , grade-1, brightness, scaleFactor);
+  //AsciiConverter.convert("src/subject.jpg", 0 , grade-1, brightness, scaleFactor);
   AsciiConverter.convert("src/subject.jpg", choice-1 , grade-1, brightness-1, scaleFactor);
 
 }

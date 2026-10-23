@@ -8,8 +8,18 @@ public final class Gradients
     private static final LinkedHashMap<String, String> gradients = new LinkedHashMap<>();
     static {
         gradients.put(
-                "Minimal-2",
+                "Binary-2",
                 "# "
+        );
+
+        gradients.put(
+                "Binary Inverse-2",
+                " $ #"
+        );
+
+        gradients.put(
+                "Standard-3",
+                "@*. "
         );
 
         gradients.put(
@@ -18,8 +28,18 @@ public final class Gradients
         );
 
         gradients.put(
+                "Standard-7",
+                "@#*+=:. "
+        );
+
+        gradients.put(
                 "Standard-10",
                 "@%#*+=-:. "
+        );
+
+        gradients.put(
+                "Standard-15",
+                "@%#*+=-:.`' "
         );
 
         gradients.put(
@@ -28,9 +48,50 @@ public final class Gradients
         );
 
         gradients.put(
+                "Block-9",
+                "█▉▊▋▌▍▎▏░ "
+        );
+
+        gradients.put(
+                "Block Dense",
+                "█▉▊▋▌▍▎▏ "
+        );
+
+        gradients.put(
+                "Block-Mixed",
+                "█▓▊▒▌░▎ "
+        );
+
+        gradients.put(
+                "Geometric",
+                "■□▪▫· "
+        );
+
+        gradients.put(
+                "Rounded",
+                "@Oo:. "
+        );
+
+        gradients.put(
+                "Sketch",
+                "#x+=-. "
+        );
+
+        gradients.put(
+                "Numeric",
+                "9876543210 "
+        );
+
+        gradients.put(
                 "Dense",
                 "$@B%8&WM#*oahkbdpqwmZO0QLCJYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
         );
+
+        gradients.put(
+                "Dense Clean",
+                "@%#*+=-:. "
+        );
+
     }
 
     public static Set<Map.Entry<String, String>> getGradients() {return gradients.entrySet();}
