@@ -9,38 +9,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class AsciiConverter {
-    private static final LinkedHashMap<String, String> converterOptions = new LinkedHashMap<>();
-    static {
-        converterOptions.put(
-                "grayscaled",
-                "Uses a configurable scale factor"
-
-        );
-
-    }
-
-    public static Set<Map.Entry<String, String>> getConverterOptions() {return converterOptions.entrySet();}
-
-    public static String listOptions (){
-        StringBuilder result = new StringBuilder();
-        int index = 1;
-        for (String name : converterOptions.keySet()) {
-            result.append("(")
-                    .append(index++)
-                    .append(") ")
-                    .append(name)
-                    .append("\n");
-        }
-        return result.toString();
-    }
-
 
     public static void convert (String filename, int convertType, int gradientType, int brightnessType, int scaleFactor) {
         try {
             BufferedImage image = ImageIO.read(new File(filename));
             FileWriter writer = new FileWriter("output.txt");
 
-            if  (convertType < 0 || convertType >= converterOptions.size()){
+            if  (convertType < 0 || convertType >= Converters.getConverterCount()){
                 System.out.println("Invalid type choice");
             }
             else if  (gradientType < 0 || gradientType >= Gradients.getGradientCount()){
@@ -51,16 +26,9 @@ public class AsciiConverter {
             }
             else {
                 String gradient = Gradients.getGradient(gradientType);
+                Converter converter = Converters.getConverter(convertType);
 
-                switch (convertType){
-                    case 0:
-                        grayscaled(image, writer, gradient, brightnessType, scaleFactor);
-                        break;
-
-                    default:
-                        System.out.println("Invalid option. Using grayscaled.");
-                        grayscaled(image, writer, gradient, brightnessType, scaleFactor);
-                }
+                converter.convert(image, writer, gradient, brightnessType, scaleFactor);
             }
 
         } catch (Exception e) {
@@ -70,34 +38,6 @@ public class AsciiConverter {
 
 
 
-    public static void grayscaled (BufferedImage image,  FileWriter writer, String gradient, int brightnessType, int scaleFactor) throws IOException {
-        try{
-            for (int y = 0; y < image.getHeight(); y+= scaleFactor) {
-                for (int x = 0; x < image.getWidth(); x+= scaleFactor) {
 
-                    int rgb = image.getRGB(x, y);
-
-                    char asciiChar = getAsciiChar(gradient, brightnessType, rgb);
-
-                    writer.write(asciiChar);
-                }
-                writer.write("\n");
-            }
-            writer.close();
-            System.out.println("ASCII art saved to output.txt");
-
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-
-    private static char getAsciiChar(String gradient, int brightnessType, int rgb) {
-        int brightness = BrightnessCalculator.calculateBrightness(rgb, brightnessType);
-
-        // Simple ASCII mapping
-        int index = brightness * (gradient.length() - 1) / 255;
-        char asciiChar = gradient.charAt(index);
-        return asciiChar;
-    }
 
 }
