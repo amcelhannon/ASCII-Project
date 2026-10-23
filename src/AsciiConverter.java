@@ -10,12 +10,12 @@ import java.util.Set;
 
 public class AsciiConverter {
 
-    public static void convert (String filename, int convertType, int gradientType, int brightnessType, int scaleFactor) {
+    public static void convert (String filename, int preprocessType, int convertType, int gradientType, int brightnessType, int scaleFactor) {
         try {
-            BufferedImage image = ImageIO.read(new File(filename));
-            FileWriter writer = new FileWriter("output.txt");
-
-            if  (convertType < 0 || convertType >= Converters.getConverterCount()){
+            if  (preprocessType < 0 || preprocessType >= Preprocessors.getPreprocessorCount()){
+                System.out.println("Invalid type choice");
+            }
+            else if  (convertType < 0 || convertType >= Converters.getConverterCount()){
                 System.out.println("Invalid type choice");
             }
             else if  (gradientType < 0 || gradientType >= Gradients.getGradientCount()){
@@ -25,6 +25,10 @@ public class AsciiConverter {
                 System.out.println("Invalid brightness choice");
             }
             else {
+                BufferedImage image = ImageIO.read(new File(filename));
+                image = Preprocessors.getPreprocessor(preprocessType).process(image);
+                FileWriter writer = new FileWriter("output.txt");
+
                 String gradient = Gradients.getGradient(gradientType);
                 Converter converter = Converters.getConverter(convertType);
 

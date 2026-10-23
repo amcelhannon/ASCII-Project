@@ -1,9 +1,19 @@
+import java.awt.image.BufferedImage;
 import java.util.Scanner;
 
 void main() {
   Scanner scan = new Scanner(System.in);
 
-  System.out.println("Choose from the following options:");
+  System.out.println("Choose from the following Preprocessors:");
+  System.out.println(Preprocessors.listPreprocessors());
+  System.out.print("Option Choice: ");
+  int processorChoice = scan.nextInt();
+  if (processorChoice < 1 || processorChoice > Preprocessors.getPreprocessorCount()) {
+    System.out.println("Invalid option.");
+    return;
+  }
+
+  System.out.println("Choose from the following converters:");
   System.out.println(Converters.listConverters());
   System.out.print("Option Choice: ");
   int choice = scan.nextInt();
@@ -33,7 +43,6 @@ void main() {
   System.out.print("\nScale factor (Original to New): ");
   int scaleFactor = scan.nextInt();
 
-  //AsciiConverter.convert("src/subject.jpg", 0 , grade-1, brightness, scaleFactor);
-  AsciiConverter.convert("src/subject.jpg", choice-1 , grade-1, brightness-1, scaleFactor);
+  AsciiConverter.convert("src/subject.jpg", processorChoice-1, choice-1 , grade-1, brightness-1, scaleFactor);
 
 }
