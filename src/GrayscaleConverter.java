@@ -17,10 +17,10 @@ public class GrayscaleConverter implements Converter {
     }
 
     @Override
-    public void convert (BufferedImage image,  FileWriter writer, String gradient, int brightnessType, int scaleFactor) throws IOException {
-        try{
-            for (int y = 0; y < image.getHeight(); y+= scaleFactor) {
-                for (int x = 0; x < image.getWidth(); x+= scaleFactor) {
+    public void convert(BufferedImage image, FileWriter writer, String gradient, int brightnessType, int scaleFactor) throws IOException {
+        try {
+            for (int y = 0; y < image.getHeight(); y += scaleFactor) {
+                for (int x = 0; x < image.getWidth(); x += scaleFactor) {
 
                     int rgb = image.getRGB(x, y);
 
@@ -31,8 +31,6 @@ public class GrayscaleConverter implements Converter {
                 writer.write("\n");
             }
             writer.close();
-            System.out.println("ASCII art saved to output.txt");
-
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
