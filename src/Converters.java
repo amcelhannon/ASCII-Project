@@ -14,10 +14,8 @@ public class Converters {
     }
 
     static {
-       register(
-               "Grayscale",
-                new GrayscaleConverter()
-        );
+       register("Grayscale", new GrayscaleConverter());
+       register("GlyphConverter", new GlyphConverter());
     }
 
     public static String listConverters() {

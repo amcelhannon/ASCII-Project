@@ -1,6 +1,6 @@
-import javax.imageio.ImageIO;
+import Brightness.BrightnessCalculator;
+
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 

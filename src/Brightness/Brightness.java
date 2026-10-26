@@ -1,3 +1,5 @@
+package Brightness;
+
 import java.util.function.Function;
 
 public class Brightness {
@@ -15,5 +17,9 @@ public class Brightness {
 
     public int calculate(int rgb) {
         return calculator.apply(rgb);
+    }
+
+    public double calculate(char symbol) {
+        return 0.0;
     }
 }

@@ -1,3 +1,6 @@
+import Brightness.BrightnessCalculator;
+import Gradient.Gradients;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;

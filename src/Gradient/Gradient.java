@@ -1,4 +1,4 @@
-import java.util.function.Function;
+package Gradient;
 
 public class Gradient {
     private final String name;

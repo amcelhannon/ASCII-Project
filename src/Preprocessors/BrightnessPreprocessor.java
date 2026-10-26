@@ -7,12 +7,12 @@ import java.awt.Color;
 public class BrightnessPreprocessor implements Preprocessor {
     private static final ArrayList<String> parameterNames = new ArrayList<>() ;
     static {
-        parameterNames.add("Brightness, as Double [0-255]");
+        parameterNames.add("Brightness.Brightness, as Double [0-255]");
     }
 
     @Override
     public String getName() {
-        return "Brightness Preprocessor" ;
+        return "Brightness.Brightness Preprocessor" ;
     }
 
     @Override

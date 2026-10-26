@@ -1,3 +1,5 @@
+package Brightness;
+
 import java.util.ArrayList;
 public final class BrightnessCalculator {
     private static final ArrayList<Brightness> brightnessOptions = new ArrayList<>();

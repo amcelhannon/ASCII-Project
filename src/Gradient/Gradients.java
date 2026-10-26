@@ -1,3 +1,5 @@
+package Gradient;
+
 import java.util.ArrayList;
 
 public final class Gradients
@@ -55,6 +57,9 @@ public final class Gradients
         gradients.add(new Gradient(
                 "Dense Clean",
                 "@%#*+=-:. "  ));
+        gradients.add(new Gradient(
+                "Nospaces",
+                "$@B%8&WM#*oahkbdpqwmZO0QLCJYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`"  ));
     }
 
     public static ArrayList<Gradient> getGradients() {return gradients;}
@@ -78,6 +83,10 @@ public final class Gradients
 
     public static String getNthGradient(int index) {
         return gradients.get(index-1).getCharacterBase();
+    }
+
+    public static void addGradient(String name, String characterBase) {
+        gradients.add(new Gradient(name, characterBase));
     }
 
 }
