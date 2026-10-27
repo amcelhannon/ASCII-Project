@@ -78,4 +78,18 @@ public class Glyph {
     public double bitmapDifference(double[][] bitmap) {
         return Glyph.bitmapDifference(this.bitmap, bitmap);
     }
+
+    //TODO: delete
+    public static double getAverageBitmapBrightness(double[][] bitmap) {
+
+            double sum = 0;
+            for (int row = 0; row < bitmap.length; row++) {
+                for (int col = 0; col < bitmap.length; col++) {
+                    sum += bitmap[row][col];
+                }
+            }
+            return sum/(bitmap.length * bitmap.length);
+    }
+
+
 }
