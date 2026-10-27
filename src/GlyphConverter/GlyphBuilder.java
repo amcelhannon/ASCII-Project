@@ -1,7 +1,6 @@
 package GlyphConverter;
 
 import Gradient.Gradient;
-import Preprocessors.BrightnessPreprocessor;
 import Brightness.*;
 
 import javax.imageio.ImageIO;
@@ -22,7 +21,6 @@ public class GlyphBuilder {
     }
 
     public static GlyphList BuildGlyphList(Gradient gradient, int resolution) {
-        // Not the best practice,as it requires Glyphbuilder to know about Gradient
         return BuildGlyphList(gradient.getCharacterBase(), resolution);
     }
 

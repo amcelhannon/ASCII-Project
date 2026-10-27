@@ -20,6 +20,8 @@ void main() throws IOException {
   ConverterInterface.converterInterface();
 
   //GlyphList glyphList = GlyphBuilder.BuildGlyphList("@%#", 10);
+
+
 }
 
 public static void checkGradients (){

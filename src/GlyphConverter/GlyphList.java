@@ -24,18 +24,18 @@ public class GlyphList {
         return glyphs;
     }
     public String getGlyphsAsString() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (Glyph glyph : glyphs) {
-            result += glyph.getSymbol();
+            result.append(glyph.getSymbol());
         }
-        return result;
+        return result.toString();
     }
 
     public Glyph getClosestBrightnessGlyph(double brightness) {
         assert (brightness >= 0 && brightness <= 1);
         assert !glyphs.isEmpty();
 
-        Glyph bestMatch = glyphs.get(0);
+        Glyph bestMatch = glyphs.getFirst();
         double bestDifference = Math.abs(bestMatch.getBrightness() - brightness); ; // Brightnesses should all be <=1, so this is a placeholder
 
         for (Glyph glyph : glyphs) {
@@ -52,7 +52,7 @@ public class GlyphList {
         assert (bitmap != null);
         assert !glyphs.isEmpty();
 
-        Glyph bestMatch = glyphs.get(0);
+        Glyph bestMatch = glyphs.getFirst();
         double bestDifference = bestMatch.bitmapDifference(bitmap);
         for (Glyph glyph : glyphs) {
             double currentDifference = glyph.bitmapDifference(bitmap);

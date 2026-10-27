@@ -65,6 +65,10 @@ public final class Gradients
         gradients.add(new Gradient(
                 "Nospaces",
                 "M#@WBhkbdmZQYX$awLf%8&pqO0zunCJxt1vrI*j[]+loc/\\{}<>i|()?\"~!-^;,:`_"  ));
+        gradients.add(new Gradient(
+                "Full ASCII",
+                "HMWEN#@BAKFRmXDQbd6$GPZw%9kpq048STUVfhxa&5LOYseg2Cnuy3JzIlotv1ci7r=?+;\":[]j*<>{}()/\\|!',^.-~`_ "
+        ));
     }
 
     public static ArrayList<Gradient> getGradients() {return gradients;}
