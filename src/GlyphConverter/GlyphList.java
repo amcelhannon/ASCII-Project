@@ -56,7 +56,7 @@ public class GlyphList {
         double bestDifference = bestMatch.bitmapDifference(bitmap);
         for (Glyph glyph : glyphs) {
             double currentDifference = glyph.bitmapDifference(bitmap);
-            if ( currentDifference < bestDifference ) {
+            if ( currentDifference <= bestDifference ) {
                 bestMatch = glyph;
                 bestDifference = currentDifference;
             }
