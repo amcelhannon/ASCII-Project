@@ -1,4 +1,5 @@
 import Brightness.BrightnessCalculator;
+import Gradient.Gradient;
 
 import java.awt.image.BufferedImage;
 import java.io.FileWriter;
@@ -13,7 +14,7 @@ public interface Converter {
     void convert(
             BufferedImage image,
             FileWriter writer,
-            String gradient,
+            Gradient gradient,
             int brightnessType,
             int scaleFactor
     ) throws IOException;

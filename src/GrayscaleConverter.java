@@ -1,4 +1,5 @@
 import Brightness.BrightnessCalculator;
+import Gradient.Gradient;
 
 import java.awt.image.BufferedImage;
 import java.io.FileWriter;
@@ -17,14 +18,15 @@ public class GrayscaleConverter implements Converter {
     }
 
     @Override
-    public void convert(BufferedImage image, FileWriter writer, String gradient, int brightnessType, int scaleFactor) throws IOException {
+    public void convert(BufferedImage image, FileWriter writer, Gradient gradient, int brightnessType, int scaleFactor) throws IOException {
         try {
+            String gradientBase = gradient.toString();
             for (int y = 0; y < image.getHeight(); y += scaleFactor) {
                 for (int x = 0; x < image.getWidth(); x += scaleFactor) {
 
                     int rgb = image.getRGB(x, y);
 
-                    char asciiChar = getAsciiChar(gradient, brightnessType, rgb);
+                    char asciiChar = getAsciiChar(gradientBase, brightnessType, rgb);
 
                     writer.write(asciiChar);
                 }

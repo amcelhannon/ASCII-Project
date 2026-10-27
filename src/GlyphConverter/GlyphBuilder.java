@@ -84,7 +84,7 @@ public class GlyphBuilder {
             File outputFile = new File("character_bitmap.bmp");
             boolean success = ImageIO.write(bitmap, "bmp", outputFile);
             if (success) {
-                System.out.println("Successfully saved character bitmap to: " + outputFile.getAbsolutePath());
+                //System.out.println("Successfully saved character bitmap to: " + outputFile.getAbsolutePath());
             } else {
                 System.err.println("Failed to save the image: No appropriate writer found.");
             }

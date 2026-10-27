@@ -21,3 +21,15 @@ void main() throws IOException {
 
   //GlyphList glyphList = GlyphBuilder.BuildGlyphList("@%#", 10);
 }
+
+public static void checkGradients (){
+  for (int i = 1; i<= Gradients.getGradientCount(); i++ ) {
+    Gradient gradient = Gradients.getNthGradient(i);
+    Gradient test = Gradients.organizeGradient(gradient, 10);
+
+    if (!gradient.toString().equals(test.toString())) {
+      System.out.println("Original: " + gradient.getName());
+      System.out.println(test.getName() + " " + test.getCharacterBase() + "\n");
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package GlyphConverter;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class GlyphList {
     private final ArrayList<Glyph> glyphs;
@@ -11,6 +12,11 @@ public class GlyphList {
     public GlyphList(ArrayList<Glyph> glyphs) {
         this.glyphs = glyphs;
     }
+
+    public void sort(Comparator<Glyph>  comparator) {
+        glyphs.sort(comparator);
+    }
+
     public void addGlyph(Glyph glyph) {
         glyphs.add(glyph);
     }

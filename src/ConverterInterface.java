@@ -1,4 +1,5 @@
 import Brightness.BrightnessCalculator;
+import Gradient.Gradient;
 import Gradient.Gradients;
 
 import javax.imageio.ImageIO;
@@ -64,7 +65,7 @@ public class ConverterInterface {
 
                 BufferedImage OriginalImage = ImageIO.read(new File(fileName));
                 FileWriter writer = new FileWriter(outputName);
-                String gradient = Gradients.getNthGradient(gradientChoice);
+                Gradient gradient = Gradients.getNthGradient(gradientChoice);
                 Converter converter = Converters.getNthConverter(converterChoice);
 
                 converter.convert(OriginalImage, writer, gradient, brightness, scaleFactor);

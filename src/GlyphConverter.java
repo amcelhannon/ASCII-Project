@@ -1,5 +1,6 @@
 import Brightness.BrightnessCalculator;
 import GlyphConverter.*;
+import Gradient.Gradient;
 
 import java.awt.image.BufferedImage;
 import java.io.FileWriter;
@@ -17,7 +18,7 @@ public class GlyphConverter implements Converter {
     }
 
     @Override
-    public void convert(BufferedImage image, FileWriter writer, String gradient, int brightnessType, int patchSize)  {
+    public void convert(BufferedImage image, FileWriter writer, Gradient gradient, int brightnessType, int patchSize)  {
         try {
             GlyphList glyphList = GlyphBuilder.BuildGlyphList(gradient, patchSize);
             System.out.println(glyphList);

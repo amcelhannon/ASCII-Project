@@ -1,6 +1,11 @@
 package Gradient;
 
+import GlyphConverter.Glyph;
+import GlyphConverter.GlyphBuilder;
+import GlyphConverter.GlyphList;
+
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public final class Gradients
 {
@@ -11,7 +16,7 @@ public final class Gradients
                 "# "));
         gradients.add(new Gradient(
                 "Binary Inverse-2",
-                " $ #"  ));
+                " #"  ));
         gradients.add(new Gradient(
                 "Standard-3",
                 "@*. "  ));
@@ -19,14 +24,14 @@ public final class Gradients
                 "Standard-5",
                 "#*:. "  ));
         gradients.add(new Gradient(
-                "Standard-7",
-                "@#*+=:. "  ));
+                "Standard-8",
+                "#@=*+:. "  ));
         gradients.add(new Gradient(
                 "Standard-10",
-                "@%#*+=-:. "  ));
+                "#@%=*+-:. "  ));
         gradients.add(new Gradient(
-                "Standard-15",
-                "@%#*+=-:.`' "  ));
+                "Standard-12",
+                "#@%=*+-':.` "  ));
         gradients.add(new Gradient(
                 "Block-5",
                 "█▓▒░ " ));
@@ -38,7 +43,7 @@ public final class Gradients
                 "█▉▊▋▌▍▎▏ "   ));
         gradients.add(new Gradient(
                 "Block-Mixed",
-                "█▓▊▒▌░▎ "  ));
+                "█▓▊▌▒▎░ "  ));
         gradients.add(new Gradient(
                 "Geometric",
                 "■□▪▫· "  ));
@@ -47,19 +52,19 @@ public final class Gradients
                 "@Oo:. "  ));
         gradients.add(new Gradient(
                 "Sketch",
-                "#x+=-. "  ));
+                "#x=+-. "  ));
         gradients.add(new Gradient(
                 "Numeric",
-                "9876543210 "  ));
+                "4968052173 "  ));
         gradients.add(new Gradient(
                 "Dense",
-                "$@B%8&WM#*oahkbdpqwmZO0QLCJYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "  ));
+                "M#@WBhkbdmZQYX$awLf%8&pqO0zunCJxt1vrI*j[]+loc/\\{}<>i|()?\"~!-^;,':`._ "  ));
         gradients.add(new Gradient(
                 "Dense Clean",
-                "@%#*+=-:. "  ));
+                "#@%=*+-:. "  ));
         gradients.add(new Gradient(
                 "Nospaces",
-                "$@B%8&WM#*oahkbdpqwmZO0QLCJYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`"  ));
+                "M#@WBhkbdmZQYX$awLf%8&pqO0zunCJxt1vrI*j[]+loc/\\{}<>i|()?\"~!-^;,:`_"  ));
     }
 
     public static ArrayList<Gradient> getGradients() {return gradients;}
@@ -81,12 +86,28 @@ public final class Gradients
         return result.toString();
     }
 
-    public static String getNthGradient(int index) {
-        return gradients.get(index-1).getCharacterBase();
+    public static Gradient getNthGradient(int index) {
+        return gradients.get(index-1);
     }
 
     public static void addGradient(String name, String characterBase) {
         gradients.add(new Gradient(name, characterBase));
     }
+
+    public static Gradient organizeGradient(Gradient gradient, int resolution) {
+        // Organizes a gradient, based on brightness and returns a new Gradient Object
+
+        GlyphList glyphList = new GlyphList();
+        double[][] bitmap;
+        double[][] edgeHistogram = null;
+        for (char c : gradient.getCharacterBase().toCharArray()) {
+            bitmap = GlyphBuilder.renderBitmap(c, resolution );
+            glyphList.addGlyph( new Glyph(c, bitmap, edgeHistogram));
+        }
+        glyphList.sort(Comparator.comparing(Glyph::getBrightness).reversed());
+        return new Gradient("Organized " + gradient.getName(), glyphList.getGlyphsAsString());
+    }
+
+
 
 }
