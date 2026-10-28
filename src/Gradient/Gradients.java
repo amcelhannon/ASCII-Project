@@ -10,6 +10,7 @@ import java.util.Comparator;
 public final class Gradients
 {
     private static final ArrayList<Gradient> gradients = new ArrayList<>();
+    private static final int defaultResolution = 256;
     static {
         gradients.add(new Gradient(
                 "Binary-2",
@@ -94,13 +95,8 @@ public final class Gradients
         return gradients.get(index-1);
     }
 
-    public static void addGradient(String name, String characterBase) {
-        gradients.add(new Gradient(name, characterBase));
-    }
-
     public static Gradient organizeGradient(Gradient gradient, int resolution) {
-        // Organizes a gradient, based on brightness and returns a new Gradient Object
-
+        // Organizes a gradient, based on brightness, and returns a new Gradient Object
         GlyphList glyphList = new GlyphList();
         double[][] bitmap;
         double[][] edgeHistogram = null;
@@ -112,6 +108,23 @@ public final class Gradients
         return new Gradient("Organized " + gradient.getName(), glyphList.getGlyphsAsString());
     }
 
+    public static Gradient MakeGradient(String name, String characterBase, int resolution){
+        GlyphList glyphList = new GlyphList();
+        double[][] bitmap;
+        double[][] edgeHistogram = null;
+        for (char c : characterBase.toCharArray()) {
+            bitmap = GlyphBuilder.renderBitmap(c, resolution );
+            glyphList.addGlyph( new Glyph(c, bitmap, edgeHistogram));
+        }
+        glyphList.sort(Comparator.comparing(Glyph::getBrightness).reversed());
+        return new Gradient(name, glyphList.getGlyphsAsString());
+    }
 
+    public static void addGradient(Gradient gradient) {
+        gradients.add(gradient);
+    }
 
+    public static void addGradient(String name, String characterBase) {
+        gradients.add(MakeGradient(name, characterBase, defaultResolution) );
+    }
 }
