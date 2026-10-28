@@ -14,7 +14,7 @@ public class Converters {
     }
 
     static {
-       register("Grayscale", new GrayscaleConverter());
+       register("Grayscale", new ASCIIConverter());
        register("GlyphConverter", new GlyphConverter());
     }
 
