@@ -3,12 +3,14 @@ package GlyphConverter;
 public class Glyph {
     private char symbol;
     private double brightness;
+    private int resolution;
 
     private double[][] bitmap;
     private double[][] edgeHistogram;
     public Glyph(char symbol, double[][] bitmap, double[][] edgeHistogram) {
         this.symbol = symbol;
         this.bitmap = bitmap;
+        this.resolution = bitmap[0].length;
         this.brightness = getAverageBitmapDensity();
         this.edgeHistogram = edgeHistogram;
     }
@@ -18,6 +20,13 @@ public class Glyph {
     }
     public double getBrightness() {
         return brightness;
+    }
+    public int getResolution() {
+        return resolution;
+    }
+
+    public double[][] getBitmap() {
+        return bitmap;
     }
 
     public String bitMaptoString(){
@@ -73,6 +82,10 @@ public class Glyph {
         }
 
         return difference/( bitmap1.length * bitmap1[0].length);
+    }
+
+    public double bitmapDifference(Glyph glyph1){
+        return bitmapDifference(this.bitmap, glyph1.getBitmap());
     }
 
     public double bitmapDifference(double[][] bitmap) {

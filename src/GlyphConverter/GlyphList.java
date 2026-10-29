@@ -5,24 +5,20 @@ import java.util.Comparator;
 
 public class GlyphList {
     private final ArrayList<Glyph> glyphs;
+    private final double PATCH_WEIGHT = .95;
+    private final double BRIGHTNESS_WEIGHT = 1-PATCH_WEIGHT;
 
     public GlyphList() {
         this.glyphs = new ArrayList<>();
     }
-    public GlyphList(ArrayList<Glyph> glyphs) {
-        this.glyphs = glyphs;
-    }
+    public GlyphList(ArrayList<Glyph> glyphs) {this.glyphs = glyphs;}
 
-    public void sort(Comparator<Glyph>  comparator) {
-        glyphs.sort(comparator);
-    }
+    public void sort(Comparator<Glyph>  comparator) {glyphs.sort(comparator);}
 
-    public void addGlyph(Glyph glyph) {
-        glyphs.add(glyph);
-    }
-    public ArrayList<Glyph> getGlyphs() {
-        return glyphs;
-    }
+    public void addGlyph(Glyph glyph) {glyphs.add(glyph);}
+
+    public ArrayList<Glyph> getGlyphs() {return glyphs;}
+
     public String getGlyphsAsString() {
         StringBuilder result = new StringBuilder();
         for (Glyph glyph : glyphs) {
@@ -48,20 +44,31 @@ public class GlyphList {
         return bestMatch;
     }
 
-    public Glyph getClosestGlyph(double[][] bitmap) {
-        assert (bitmap != null);
+    public Glyph getClosestGlyph(Glyph glyphToMatch) {
+        assert (glyphToMatch != null);
         assert !glyphs.isEmpty();
 
         Glyph bestMatch = glyphs.getFirst();
-        double bestDifference = bestMatch.bitmapDifference(bitmap);
+        double bestScore = getSimilarityScore(glyphToMatch, bestMatch);
+        double currentScore;
         for (Glyph glyph : glyphs) {
-            double currentDifference = glyph.bitmapDifference(bitmap);
-            if ( currentDifference <= bestDifference ) {
+            currentScore = getSimilarityScore(glyphToMatch, glyph);
+            if (currentScore < bestScore) {
                 bestMatch = glyph;
-                bestDifference = currentDifference;
+                bestScore = currentScore;
             }
         }
         return bestMatch;
+    }
+
+    public double getSimilarityScore(Glyph glyph1, Glyph glyph2) {
+        assert (glyph1 != null && glyph2 != null);
+        assert (glyph1.getResolution() == glyph2.getResolution());
+
+        double brightnessDifference = Math.abs(glyph1.getBrightness()- glyph2.getBrightness());
+        double patchDifference = Math.abs(glyph1.bitmapDifference(glyph2));
+
+        return (brightnessDifference * BRIGHTNESS_WEIGHT) + (patchDifference * PATCH_WEIGHT);
     }
 
     public String toString(){
@@ -71,5 +78,4 @@ public class GlyphList {
         }
         return result;
     }
-
 }

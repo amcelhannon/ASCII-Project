@@ -21,6 +21,7 @@ public class GlyphConverter implements Converter {
     public void convert(BufferedImage image, FileWriter writer, Gradient gradient, int brightnessType, int patchSize)  {
         try {
             GlyphList glyphList = GlyphBuilder.BuildGlyphList(gradient, patchSize);
+            Glyph patch;
             System.out.println(glyphList);
             int counter = 0;
             double [][] imagePatch;
@@ -33,7 +34,8 @@ public class GlyphConverter implements Converter {
             for (int y = 0; y < yCutoff; y+= patchSize) {
                 for (int x = 0; x < xCutoff; x+= patchSize) {
                     imagePatch =  Converter.extractPatch(image, x, y, patchSize, brightnessType);
-                    bestPatchMatch = glyphList.getClosestGlyph(imagePatch);
+                    patch = new Glyph('?', imagePatch, null);
+                    bestPatchMatch = glyphList.getClosestGlyph(patch);
                     writer.write(bestPatchMatch.getSymbol());
                     counter++;
                 }
