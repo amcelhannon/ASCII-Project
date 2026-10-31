@@ -1,9 +1,7 @@
 0. Housekeeping:
     - Refactoring?
     - Add Braille gradients?
-    - Update Brightness Calculations to always return a double, for better resolution
 
-1. Ensure proper luminance matching for both ASCII and Glyphconverter- rounding logarithmically for ASCII, adding weights for Glyph?
 
 2. Unicode support
 

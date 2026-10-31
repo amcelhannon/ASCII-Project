@@ -22,7 +22,7 @@ public class GlyphConverter implements Converter {
         try {
             GlyphList glyphList = GlyphBuilder.BuildGlyphList(gradient, patchSize);
             Glyph patch;
-            System.out.println(glyphList);
+            //System.out.println(glyphList);
             int counter = 0;
             double [][] imagePatch;
             Glyph bestPatchMatch;

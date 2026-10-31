@@ -29,8 +29,8 @@ public class ASCIIConverter implements Converter {
                 for (int x = 0; x < xCutoff; x+= scaleFactor) {
                     imagePatch =  Converter.extractPatch(image, x, y, scaleFactor, brightnessType);
                     double brightness =  Glyph.getAverageBitmapBrightness(imagePatch);
-                    char asciiChar = getAsciiChar(gradient, brightness);
-                    writer.write(asciiChar);
+                    String asciiSymbol = getAsciiSymbol(gradient, brightness);
+                    writer.write(asciiSymbol);
                 }
                 writer.write("\n");
             }
@@ -40,10 +40,11 @@ public class ASCIIConverter implements Converter {
         }
     }
 
-    private static char getAsciiChar(Gradient gradient, double brightness) {
+    private static String getAsciiSymbol(Gradient gradient, double brightness) {
         // Simple ASCII mapping
         String characterBase = gradient.getCharacterBase();
         int index = (int) Math.round( brightness * (characterBase.length() - 1));
-        return characterBase.charAt(index);
+        index = characterBase.length() - 1 - index;
+        return characterBase.substring(index, index + 1);
     }
 }

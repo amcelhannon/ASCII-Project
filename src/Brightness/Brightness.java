@@ -15,11 +15,7 @@ public class Brightness {
         return name;
     }
 
-    public int calculate(int rgb) {
+    public double calculate(int rgb) {
         return calculator.apply(rgb);
-    }
-
-    public double calculate(char symbol) {
-        return 0.0;
     }
 }

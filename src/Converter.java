@@ -29,7 +29,7 @@ public interface Converter {
                 //Start reading through patch, storing 1:1 pixel to brightness value
                 int rgb = image.getRGB(row + x, col + y);
                 double brightness = (double) BrightnessCalculator.calculateBrightness(rgb, brightnessType)/255;
-                // TODO: Assuming Same brightness calculations as Glyph- i.e. 1-
+                // Assuming Same brightness calculations as Glyph- i.e. 1-
                 patch[row][col] = 1.0 - brightness;
             }
         }

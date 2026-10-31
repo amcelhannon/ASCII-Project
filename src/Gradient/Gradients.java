@@ -70,6 +70,17 @@ public final class Gradients
                 "Full ASCII",
                 "HMWEN#@BAKFRmXDQbd6$GPZw%9kpq048STUVfhxa&5LOYseg2Cnuy3JzIlotv1ci7r=?+;\":[]j*<>{}()/\\|!',^.-~`_ "
         ));
+        gradients.add(new Gradient(
+                "Boxes",
+                "┼├┤┴┬│└┘┌┐─"));
+        gradients.add(new Gradient(
+                "Braille",
+                "⣿⠿⠟⠏⠇⠃⠁"));
+        gradients.add(new Gradient(
+                "Braille Full",
+                "⣿⢿⡿⠿⣷⣻⣟⣯⣽⣾⢷⡷⢻⡻⢟⡟⢯⢽⡯⡽⢾⡾⠷⠻⠟⠯⠽⠾⣳⣗⣧⣵⣛⣫⣶⣹⣏⣝⣭⣺⣞⣮⣼⢳⡳⢗⡗⢧⢵⡧⢛⡛⢫⢶⢹⡫⢏⡶⡹⢝⡏⡝⢭⢺⡭⡵⡺⢞⡞⢮⢼⡮⡼⠳⠗⠧⠵⠛⠫⠶⠹⠏⠝⠭⠺⠞⠮⠼⣓⣣⣱⣇⣕⣥⣲⣋⣖⣙⣦⣩⣴⣍⣚⣪⣸⣎⣜⣬⢓⡓⢣⢱⡣⢇⡱⢕⡇⡕⢥⢲⡥⢋⡲⢖⢙⡋⡖⡙⢦⢩⢴⡦⡩⢍⡴⢚⡍⡚⢪⡬⢸⡪⢎⡸⢜⡎⡜⢬⠓⠣⠱⠇⠕⠥⠲⠋⠖⠙⠦⠩⠴⠍⠚⠪⠸⠎⠜⠬⣃⣑⣡⣅⣒⣢⣰⣆⣉⣔⣤⣊⣘⣨⣌⢃⢑⡃⡑⢡⡡⢅⢒⡅⡒⢢⢰⡢⢆⢉⡰⢔⡆⡉⡔⢤⡤⢊⢘⡊⡘⢨⡨⢌⡌⠃⠑⠡⠅⠒⠢⠰⠆⠉⠔⠤⠊⠘⠨⠌⣁⣂⣐⣠⣄⣈⡁⢂⢐⡂⢁⡐⢠⡠⢄⡄⢈⡈⠁⠂⠐⠠⠄⠈⣀⢀⡀⠀"
+        ));
+
     }
 
     public static ArrayList<Gradient> getGradients() {return gradients;}
@@ -97,27 +108,14 @@ public final class Gradients
 
     public static Gradient organizeGradient(Gradient gradient, int resolution) {
         // Organizes a gradient, based on brightness, and returns a new Gradient Object
-        GlyphList glyphList = new GlyphList();
-        double[][] bitmap;
-        double[][] edgeHistogram = null;
-        for (char c : gradient.getCharacterBase().toCharArray()) {
-            bitmap = GlyphBuilder.renderBitmap(c, resolution );
-            glyphList.addGlyph( new Glyph(c, bitmap, edgeHistogram));
-        }
+        GlyphList glyphList = GlyphBuilder.BuildGlyphList(gradient, resolution);
         glyphList.sort(Comparator.comparing(Glyph::getBrightness).reversed());
         return new Gradient("Organized " + gradient.getName(), glyphList.getGlyphsAsString());
     }
 
     public static Gradient MakeGradient(String name, String characterBase, int resolution){
-        GlyphList glyphList = new GlyphList();
-        double[][] bitmap;
-        double[][] edgeHistogram = null;
-        for (char c : characterBase.toCharArray()) {
-            bitmap = GlyphBuilder.renderBitmap(c, resolution );
-            glyphList.addGlyph( new Glyph(c, bitmap, edgeHistogram));
-        }
-        glyphList.sort(Comparator.comparing(Glyph::getBrightness).reversed());
-        return new Gradient(name, glyphList.getGlyphsAsString());
+        Gradient gradient = new Gradient(name, characterBase);
+        return organizeGradient(gradient, resolution);
     }
 
     public static void addGradient(Gradient gradient) {

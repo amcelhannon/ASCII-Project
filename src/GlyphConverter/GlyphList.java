@@ -32,7 +32,7 @@ public class GlyphList {
         assert !glyphs.isEmpty();
 
         Glyph bestMatch = glyphs.getFirst();
-        double bestDifference = Math.abs(bestMatch.getBrightness() - brightness); ; // Brightnesses should all be <=1, so this is a placeholder
+        double bestDifference = Math.abs(bestMatch.getBrightness() - brightness); // Brightnesses should all be <=1, so this is a placeholder
 
         for (Glyph glyph : glyphs) {
             double currentDifference = Math.abs(glyph.getBrightness() - brightness);
@@ -72,10 +72,10 @@ public class GlyphList {
     }
 
     public String toString(){
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (Glyph glyph : glyphs){
-            result += glyph.toString() + "\n";
+            result.append(glyph.toString()).append("\n");
         }
-        return result;
+        return result.toString();
     }
 }

@@ -44,7 +44,7 @@ public final class BrightnessCalculator {
 
     }
 
-    public static int calculateBrightness( int rgb, int brightnessOption) {
+    public static double calculateBrightness( int rgb, int brightnessOption) {
         return brightnessOptions.get(brightnessOption).calculate(rgb);
     }
 

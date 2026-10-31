@@ -1,22 +1,25 @@
 package GlyphConverter;
 
 public class Glyph {
-    private char symbol;
-    private double brightness;
-    private int resolution;
+    private final int codePoint;
+    private final double brightness;
+    private final int resolution;
 
-    private double[][] bitmap;
-    private double[][] edgeHistogram;
-    public Glyph(char symbol, double[][] bitmap, double[][] edgeHistogram) {
-        this.symbol = symbol;
+    private final double[][] bitmap;
+    private final double[][] edgeHistogram;
+    public Glyph(int codePoint, double[][] bitmap, double[][] edgeHistogram) {
+        this.codePoint = codePoint;
         this.bitmap = bitmap;
         this.resolution = bitmap[0].length;
         this.brightness = getAverageBitmapDensity();
         this.edgeHistogram = edgeHistogram;
     }
 
-    public char getSymbol() {
-        return symbol;
+    public int getCodePoint() {
+        return codePoint;
+    }
+    public String getSymbol() {
+        return new String(Character.toChars(codePoint));
     }
     public double getBrightness() {
         return brightness;
@@ -29,21 +32,11 @@ public class Glyph {
         return bitmap;
     }
 
-    public String bitMaptoString(){
-        StringBuilder sb = new StringBuilder();
-        for (int row = 0; row < bitmap.length; row++) {
-            for (int col = 0; col < bitmap.length; col++) {
-                sb.append(bitmap[row][col]);
-            }
-        }
-        return sb.toString();
-    }
-
     public static String bitMaptoString(double[][] bitmap) {
         StringBuilder sb = new StringBuilder();
-        for (int row = 0; row < bitmap.length; row++) {
+        for (double[] doubles : bitmap) {
             for (int col = 0; col < bitmap.length; col++) {
-                sb.append(bitmap[row][col]);
+                sb.append(doubles[col]);
             }
         }
         return sb.toString();
@@ -62,7 +55,7 @@ public class Glyph {
 
     @Override
     public String toString() {
-        return "'" + String.valueOf(symbol) + "' -> " + String.valueOf(brightness) ;
+        return "'" + getSymbol() + "' -> " + brightness;
     }
 
     public static double bitmapDifference(double[][] bitmap1, double[][] bitmap2) {
@@ -92,7 +85,6 @@ public class Glyph {
         return Glyph.bitmapDifference(this.bitmap, bitmap);
     }
 
-    //TODO: delete
     public static double getAverageBitmapBrightness(double[][] bitmap) {
 
             double sum = 0;
@@ -103,6 +95,5 @@ public class Glyph {
             }
             return sum/(bitmap.length * bitmap.length);
     }
-
 
 }
